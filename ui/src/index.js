@@ -1,5 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {
+  BrowserRouter,
+  Route
+} from 'react-router-dom'
+
 import BlogHome from './containers/BlogHome';
 import BlogPost from './containers/BlogPost';
 
@@ -19,7 +24,12 @@ const client = new ApolloClient({
 ReactDOM.render(
   (
     <ApolloProvider client={client}>
-      <BlogPost id="one" />
+      <BrowserRouter>
+        <div>
+          <Route exact path="/" component={BlogHome}/>
+          <Route path="/:id" component={BlogPost}/>
+        </div>
+      </BrowserRouter>
     </ApolloProvider>
   ),
   document.getElementById('root')

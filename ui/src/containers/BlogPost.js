@@ -3,6 +3,6 @@ import BlogHome from '../components/BlogPost'
 
 export default graphql(BlogHome.query, {
   options: (props) => ({
-    variables: { id: props.id }
+    variables: { id: props.match.params.id }
   })
 })(BlogHome)
