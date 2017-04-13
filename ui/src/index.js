@@ -9,6 +9,7 @@ import {
 } from 'react-apollo'
 
 const client = new ApolloClient({
+  connectToDevTools: true,
   networkInterface: createNetworkInterface({
     uri: 'http://localhost:4000'
   })

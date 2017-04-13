@@ -8,12 +8,19 @@ export default class BlogHome extends React.Component {
 
     return (
       <ul>
-        { data.posts.map((title) => (
-          <li key={title}>{title}</li>
+        { data.blogPosts.map(({id, title}) => (
+          <li key={id}>{title}</li>
         ))}
       </ul>
     )
   }
 }
 
-BlogHome.query = gql`query { posts: blogPosts }`
+BlogHome.query = gql`
+  query blogPostTitles {
+    blogPosts {
+      id,
+      title
+    }
+  }
+`
