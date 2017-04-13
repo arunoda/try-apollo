@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './containers/BlogHome';
+import BlogHome from './containers/BlogHome';
+import BlogPost from './containers/BlogPost';
 
 import {
   ApolloClient,
@@ -18,7 +19,7 @@ const client = new ApolloClient({
 ReactDOM.render(
   (
     <ApolloProvider client={client}>
-      <App />
+      <BlogPost id="one" />
     </ApolloProvider>
   ),
   document.getElementById('root')
