@@ -19,7 +19,15 @@ export default class AppPost extends React.Component {
     this.setState({ error: null, loading: true })
 
     this.props.mutate({
-      variables: { title, text }
+      variables: { title, text },
+      updateQueries: {
+        // blogPostTitles is the name of the query we need to update.
+        blogPostTitles: (prev, { mutationResult }) => {
+          const newPost = mutationResult.data.addBlogPost
+          prev.blogPosts = [...prev.blogPosts, newPost]
+          return prev
+        }
+      }
     })
       .then(() => {
         this.setState({ loading: false })
