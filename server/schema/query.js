@@ -5,6 +5,7 @@ const {
   GraphQLNonNull,
 } = require('graphql')
 const BlogPost = require('./BlogPost')
+const store = require('../store')
 
 module.exports = new GraphQLObjectType({
   name: 'RootQueries',
@@ -13,10 +14,7 @@ module.exports = new GraphQLObjectType({
     blogPosts: {
       type: new GraphQLList(BlogPost),
       resolve () {
-        return [
-          { id: 'one', title: 'Hello GraphQL', text: 'GraphQL is awesome.' },
-          { id: 'two', title: 'Hello Apollo', text: 'Apollo is the best way to connect with a GraphQL server.' }
-        ]
+        return store.blogPosts
       }
     },
 
@@ -26,11 +24,7 @@ module.exports = new GraphQLObjectType({
         id: { type: new GraphQLNonNull(GraphQLString) }
       },
       resolve (root, { id }) {
-        return {
-          id,
-          title: `Post id: ${id}`,
-          text: `This is the content for post id: ${id}`
-        }
+        return store.blogPosts.find((post) => post.id === id)
       }
     }
   })
