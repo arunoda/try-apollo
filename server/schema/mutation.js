@@ -26,6 +26,22 @@ module.exports = new GraphQLObjectType({
         store.blogPosts.push(post)
         return post
       }
+    },
+
+    updateBlogPost: {
+      type: BlogPost,
+      args: {
+        id: { type: new GraphQLNonNull(GraphQLString) },
+        title: { type: GraphQLString },
+        text: { type: GraphQLString }
+      },
+      resolve (root, { id, title, text }) {
+        const post = store.blogPosts.find((p) => p.id === id)
+        post.title = title || post.title
+        post.text = text || post.text
+
+        return post
+      }
     }
   })
 })

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { gql } from 'react-apollo'
+import UpdatePost from '../containers/UpdatePost'
 
 export default class BlogPost extends React.Component {
   render () {
@@ -12,6 +13,8 @@ export default class BlogPost extends React.Component {
         <Link to="/">Go Back</Link>
         <h1>{data.blogPost.title}</h1>
         <p>{data.blogPost.text}</p>
+        <hr />
+        <UpdatePost id={data.blogPost.id}/>
       </div>
     )
   }
