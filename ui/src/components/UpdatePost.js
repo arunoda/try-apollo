@@ -59,6 +59,16 @@ export default class UpdatePost extends React.Component {
 }
 
 UpdatePost.query = gql`
+  query blogPost($id: String!) {
+    blogPost(id: $id) {
+      id,
+      title,
+      text
+    }
+  }
+`
+
+UpdatePost.mutation = gql`
   mutation updateBlogPost($id: String! $text: String, $title: String) {
     updateBlogPost(id: $id, text: $text, title: $title) {
       id,

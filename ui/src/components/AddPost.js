@@ -67,7 +67,7 @@ export default class AppPost extends React.Component {
   }
 }
 
-AppPost.query = gql`
+AppPost.mutation = gql`
   mutation addBlogPost($text: String!, $title: String!) {
     addBlogPost(text: $text, title: $title) {
       id,
