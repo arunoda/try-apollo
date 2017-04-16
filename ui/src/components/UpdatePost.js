@@ -19,9 +19,7 @@ export default class UpdatePost extends React.Component {
 
     this.setState({ error: null, loading: true })
 
-    this.props.mutate({
-      variables: { id, title, text },
-    })
+    this.props.update(id, title, text)
       .then(() => {
         this.setState({ loading: false })
       })
