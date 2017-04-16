@@ -40,7 +40,14 @@ module.exports = new GraphQLObjectType({
         post.title = title || post.title
         post.text = text || post.text
 
-        return post
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            if (/error/.test(title)) {
+              return reject(new Error('Error when updating'))
+            }
+            resolve(post)
+          }, 3000)
+        })
       }
     }
   })
